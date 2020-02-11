@@ -1,13 +1,13 @@
 const express = require("express");
 
-const route = require("./routes/post");
+const post = require("./routes/post");
 require("./db/db");
 
 const app = express();
 
 app.use(express.json());
 
-app.use(route);
+app.use(post);
 
 const PORT = process.env.PORT || 5000;
 
