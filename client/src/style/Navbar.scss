@@ -1,0 +1,19 @@
+.navbar {
+  position: fixed;
+  right: 40px;
+
+  ul {
+    display: flex;
+  }
+
+  li {
+    list-style: none;
+    padding: 20px 20px 0px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 30px;
+  }
+}

@@ -1,0 +1,22 @@
+.home {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../img/home-img.jpg");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 70vh;
+  color: #fff;
+
+  .home-heading {
+    text-align: center;
+    font-size: 60px;
+    padding-top: 100px;
+  }
+
+  .home-subHeading {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 30px;
+  }
+}
