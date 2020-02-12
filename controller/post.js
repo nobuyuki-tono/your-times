@@ -9,6 +9,15 @@ exports.getAllPosts = async (req, res) => {
   }
 };
 
+exports.getSinglePost = async (req, res) => {
+  try {
+    const post = await Post.findById({ _id: req.params.postId });
+    return res.status(200).send({ post });
+  } catch (err) {
+    return res.status(400).send(err);
+  }
+};
+
 exports.createPost = async (req, res) => {
   const post = new Post(req.body);
   try {

@@ -1,17 +1,17 @@
-.navbar {
+.navbar-custom {
   position: fixed;
   right: 40px;
 
-  ul {
+  .navbar-ul {
     display: flex;
   }
 
-  li {
+  .navbar-li {
     list-style: none;
     padding: 20px 20px 0px;
   }
 
-  a {
+  .navbar-a {
     text-decoration: none;
     color: #fff;
     font-size: 30px;

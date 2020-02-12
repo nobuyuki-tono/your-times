@@ -1,0 +1,71 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Card } from "react-bootstrap";
+
+import "../style/Posts.scss";
+import { api } from "../api";
+
+const Posts = () => {
+  const [posts, setPosts] = useState([]);
+  // const posts = [
+  //   {
+  //     title: "Hello",
+  //     content: "Hello wrold",
+  //     author: "Jon Doe",
+  //     imgUrl: "https://source.unsplash.com/random"
+  //   },
+  //   {
+  //     title: "GoodBye",
+  //     content: "Goodbye wrold",
+  //     author: "Sara Williams",
+  //     imgUrl: "https://source.unsplash.com/random"
+  //   },
+  //   {
+  //     title: "What's up",
+  //     content: "What's up wrold",
+  //     author: "Mike Smith",
+  //     imgUrl: "https://source.unsplash.com/random"
+  //   }
+  // ];
+
+  useEffect(() => {
+    async function getPosts() {
+      const posts = await api.get("/posts");
+      console.log(posts.data["articles"]);
+      setPosts(posts.data["articles"]);
+    }
+
+    getPosts();
+  }, 0);
+
+  return (
+    <div className="posts">
+      <h1 className="posts-heading">Story</h1>
+      <div className="post-container">
+        {!posts
+          ? "<h1>Loading...</h1>"
+          : posts.map(post => {
+              return (
+                <Card key={post._id} style={{ width: "18rem" }}>
+                  <Card.Img
+                    style={{ height: "200px" }}
+                    className="card-img"
+                    variant="top"
+                    src={post.imgUrl}
+                  />
+                  <Card.Body>
+                    <Card.Title>{post.title}</Card.Title>
+                    <Card.Text>By {post.author}</Card.Text>
+                    <Link className="card-a">READ</Link>
+                  </Card.Body>
+                </Card>
+              );
+            })}
+      </div>
+    </div>
+  );
+};
+
+export default Posts;

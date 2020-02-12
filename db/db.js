@@ -6,10 +6,7 @@ dotenv.config();
 console.log("Hello", process.env.MONGODB_URL);
 
 mongoose
-  .connect(
-    "mongodb+srv://brad1234:brad1234@contactkeeper-ty6y0.mongodb.net/test?retryWrites=true&w=majority",
-    { useNewUrlParser: true }
-  )
+  .connect({ useNewUrlParser: true })
   .then(() => {
     console.log("Connected to DB");
   })
