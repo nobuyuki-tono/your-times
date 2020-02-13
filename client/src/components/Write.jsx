@@ -40,18 +40,18 @@ const Write = () => {
     if (title === "" || author === "" || imgUrl === "" || content === "") {
       // alert("Plese fill in all form");
     } else {
-      // const post = await api.post("/posts", {
-      //   title,
-      //   author,
-      //   imgUrl,
-      //   content
-      // });
-      const post = await axios.post("/posts", {
+      const post = await api.post("/posts", {
         title,
         author,
         imgUrl,
         content
       });
+      // const post = await axios.post("/posts", {
+      //   title,
+      //   author,
+      //   imgUrl,
+      //   content
+      // });
 
       setTitle("");
       setAuthor("");

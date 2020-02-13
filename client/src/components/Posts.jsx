@@ -46,7 +46,7 @@ const Posts = () => {
                     <Card.Text>
                       By {post.author} <br /> Posted:{post.createdAt}
                     </Card.Text>
-                    <a href={`/post-read/${post._id}`} className="card-a">
+                    <a href={`/post/${post._id}`} className="card-a">
                       READ
                     </a>
                   </Card.Body>

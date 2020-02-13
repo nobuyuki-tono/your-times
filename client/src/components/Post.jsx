@@ -29,8 +29,8 @@ const Post = ({ match, history }) => {
 
   useEffect(() => {
     async function getSinglePost() {
-      // const post = await api.get(`post/` + match.params.id);
-      const post = await axios.get(`/post/` + match.params.id);
+      const post = await api.get(`post/` + match.params.id);
+      // const post = await axios.get(`/post/` + match.params.id);
       console.log(post.data["post"]);
       setPost(post.data["post"]);
     }
@@ -40,8 +40,8 @@ const Post = ({ match, history }) => {
 
   const handleDelete = async () => {
     console.log("hello");
-    // const postDeleted = await api.delete(`post/delete/${post._id}`);
-    const postDeleted = await axios.delete(`/post/delete/${post._id}`);
+    const postDeleted = await api.delete(`post/delete/${post._id}`);
+    // const postDeleted = await axios.delete(`/post/delete/${post._id}`);
     history.push("/");
   };
 
