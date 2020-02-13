@@ -9,7 +9,7 @@ const { deletePost } = require("../controller/post");
 
 // Route for get all blog posts
 
-router("/", (req, res) => {
+router.get("/", (req, res) => {
   res.send("Hello");
 });
 
