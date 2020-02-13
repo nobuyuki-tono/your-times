@@ -52,6 +52,7 @@ exports.editPost = async (req, res) => {
 exports.deletePost = async (req, res) => {
   try {
     const post = await Post.findByIdAndDelete({ _id: req.params.id });
+
     return res.status(201).send({ post });
   } catch (err) {
     return res.status(400).send(err);

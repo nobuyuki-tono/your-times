@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 
 import "../style/Write.scss";
 
 import { makeStyles } from "@material-ui/core/styles";
-
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import { api } from "../api";
@@ -19,26 +18,54 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 5
     }
   },
-
+  title: {
+    fontSize: 40,
+    width: 500,
+    padding: 10
+  },
+  author: {
+    fontSize: 20,
+    width: 500,
+    padding: 10
+  },
+  content: {
+    fontSize: 20,
+    width: 500,
+    padding: 10
+  },
   btn: {
     width: 300,
     backgroundColor: "rgba(255 ,255,255,0.1)"
   }
 }));
 
-const Write = () => {
+const EditPost = ({ post, history, match }) => {
   const classes = useStyles();
+  //  const [postUpdata, setPostUpdate] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [content, setContent] = useState("");
 
-  const handleSubmit = async e => {
+  useEffect(() => {
+    async function getSinglePost() {
+      const post = await api.get(`post/` + match.params.id);
+      console.log(post.data["post"]);
+      setTitle(post.data["post"].title);
+      setAuthor(post.data["post"].author);
+      setImgUrl(post.data["post"].imgUrl);
+      setContent(post.data["post"].content);
+    }
+
+    getSinglePost();
+  }, []);
+
+  const handleEditSubmit = async e => {
     e.preventDefault();
     if (title === "" || author === "" || imgUrl === "" || content === "") {
-      // alert("Plese fill in all form");
+      alert("Plese fill in all form");
     } else {
-      const post = await api.post("/posts", {
+      const editedPost = await api.post(`/post/edit/${match.params.id}`, {
         title,
         author,
         imgUrl,
@@ -49,6 +76,7 @@ const Write = () => {
       setAuthor("");
       setImgUrl("");
       setContent("");
+      history.push(`/post/${match.params.id}`);
     }
   };
 
@@ -68,77 +96,73 @@ const Write = () => {
   return (
     <div className="write">
       <Navbar />
-      <h1 className="write-heading">Write your Stroy</h1>
+      <h1 className="write-heading">Ediit</h1>
 
-      <ValidatorForm
+      <form
         className={classes.root}
         noValidate
         autoComplete="off"
-        onSubmit={handleSubmit}
+        onSubmit={handleEditSubmit}
       >
-        <TextValidator
-          required
-          validators={["required"]}
-          errorMessages={["title is required"]}
-          className="input"
+        <TextField
+          className="input-title"
           name="title"
           value={title}
           style={{ fontSize: "40px" }}
           id="standard-basic"
           label="Title"
-          onChange={handleTitleChange}
-          inputProps={{
-            style: { fontSize: 30 }
+          InputProps={{
+            classes: {
+              input: classes.title
+            }
           }}
+          onChange={handleTitleChange}
         />
         <br></br>
-        <TextValidator
-          required
-          validators={["required"]}
-          errorMessages={["Author name is required"]}
-          className="input post-title"
+        <TextField
+          className="input-author"
           name="author"
           value={author}
+          style={{ fontSize: "40px" }}
           id="standard-basic"
           label="Author Name"
-          inputProps={{
-            style: { fontSize: 20 }
+          InputProps={{
+            classes: {
+              input: classes.author
+            }
           }}
           onChange={handleAuthorChange}
         />{" "}
         <br />
-        <TextValidator
-          required
-          validators={["required"]}
-          errorMessages={["Image URL is required"]}
-          className="input"
+        <TextField
+          className="input-author"
           name="imgUrl"
           value={imgUrl}
+          style={{ fontSize: "40px" }}
           id="standard-basic"
           label="Imgae URL"
-          onChange={handleImgUrlChange}
-          inputProps={{
-            style: { fontSize: 20 }
+          InputProps={{
+            classes: {
+              input: classes.author
+            }
           }}
+          onChange={handleImgUrlChange}
         />{" "}
         <br />
-        <TextValidator
-          required
-          validators={["required"]}
-          errorMessages={["Content is required"]}
-          id="outlined-multiline-static"
-          className="input"
+        <TextField
+          id="outlined-textarea"
           label="Story"
           name="content"
           value={content}
           placeholder="Your Story"
           multiline
           variant="outlined"
-          onChange={handleContentChange}
-          rows="20"
-          inputProps={{
-            style: { fontSize: 20 }
+          InputProps={{
+            classes: {
+              input: classes.content
+            }
           }}
+          onChange={handleContentChange}
         />
         <br />
         <Button
@@ -150,9 +174,9 @@ const Write = () => {
         >
           Send
         </Button>
-      </ValidatorForm>
+      </form>
     </div>
   );
 };
 
-export default Write;
+export default EditPost;

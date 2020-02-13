@@ -1,6 +1,7 @@
 .navbar-custom {
   position: fixed;
   right: 40px;
+  z-index: 100;
 
   .navbar-ul {
     display: flex;

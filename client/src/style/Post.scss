@@ -1,0 +1,45 @@
+.post-page {
+  background: rgb(247, 229, 170);
+  position: absolute;
+  width: 100%;
+
+  .post-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+    // justify-content: center;
+    align-items: center;
+
+    margin: 100px auto;
+
+    background-color: #f3f3f3;
+  }
+
+  .post-img {
+    margin-top: 50px;
+    width: 80%;
+    height: 400px;
+    border-radius: 10px;
+  }
+
+  .post-heading {
+    font-size: 60px;
+    margin-top: 60px;
+    text-align: center;
+  }
+
+  .post-author {
+    text-align: right;
+    margin-right: 50px;
+  }
+
+  .post-content {
+    font-size: 20px;
+    line-height: 1.6rem;
+    padding: 20px;
+  }
+
+  .post-btn-div {
+    display: flex;
+  }
+}
