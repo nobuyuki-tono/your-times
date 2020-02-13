@@ -14,6 +14,7 @@
     grid-gap: 20px;
     padding: 40px;
     width: 80%;
+    margin: 0 auto;
 
     @media (max-width: 1000px) {
       .post-container {
@@ -25,7 +26,15 @@
       grid-template-columns: repeat(2, 1fr);
     }
     @media (max-width: 600px) {
-      margin: 0 auto;
+      grid-template-columns: 1fr;
+      padding: 0;
+    }
+  }
+
+  .post-card {
+    @media (max-width: 600px) {
+      margin: 20px auto;
+      width: 200px;
       grid-template-columns: 1fr;
     }
   }
@@ -34,6 +43,7 @@
     background-color: #337ab7;
     color: #fff;
     padding: 5px 10px;
+
     border-radius: 5px;
   }
 }

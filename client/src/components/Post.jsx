@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import { api } from "../api";
 
 import "../style/Post.scss";
@@ -42,42 +43,45 @@ const Post = ({ match, history }) => {
   };
 
   return (
-    <div className="post-page">
-      <Navbar />
-      <div className="post-container">
-        <img className="post-img" src={post.imgUrl} alt="" />
-        <div className="post-content">
-          <h1 className="post-heading">{post.title}</h1>
-          <p className="post-author">By {post.author}</p>
-          <p className="post-content"> {post.content}</p>
-        </div>
-        <div className="post-btn-div">
-          <a href={`edit/${post._id}`}>
+    <>
+      <div className="post-page">
+        <Navbar />
+        <div className="post-container">
+          <img className="post-img" src={post.imgUrl} alt="" />
+          <div className="post-content">
+            <h1 className="post-heading">{post.title}</h1>
+            <p className="post-author">By {post.author}</p>
+            <p className="post-content"> {post.content}</p>
+          </div>
+          <div className="post-btn-div">
+            <a href={`edit/${post._id}`}>
+              <Button
+                m="16px"
+                variant="contained"
+                color="primary"
+                type="submit"
+                className={classes.button}
+                endIcon={<Icon>create</Icon>}
+              >
+                Edit
+              </Button>
+            </a>
+
             <Button
-              m="16px"
               variant="contained"
               color="primary"
               type="submit"
               className={classes.button}
-              endIcon={<Icon>create</Icon>}
+              endIcon={<Icon>delete</Icon>}
+              onClick={handleDelete}
             >
-              Edit
+              Delete
             </Button>
-          </a>
-
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            className={classes.button}
-            endIcon={<Icon>delete</Icon>}
-            onClick={handleDelete}
-          >
-            Delete
-          </Button>
+          </div>
         </div>
+        <Footer />
       </div>
-    </div>
+    </>
   );
 };
 

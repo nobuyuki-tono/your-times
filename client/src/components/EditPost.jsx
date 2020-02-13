@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 import "../style/Write.scss";
 
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import { api } from "../api";
@@ -94,88 +97,95 @@ const EditPost = ({ post, history, match }) => {
   };
 
   return (
-    <div className="write">
-      <Navbar />
-      <h1 className="write-heading">Ediit</h1>
+    <>
+      <div className="write">
+        <Navbar />
+        <h1 className="write-heading">Edit your Stroy</h1>
 
-      <form
-        className={classes.root}
-        noValidate
-        autoComplete="off"
-        onSubmit={handleEditSubmit}
-      >
-        <TextField
-          className="input-title"
-          name="title"
-          value={title}
-          style={{ fontSize: "40px" }}
-          id="standard-basic"
-          label="Title"
-          InputProps={{
-            classes: {
-              input: classes.title
-            }
-          }}
-          onChange={handleTitleChange}
-        />
-        <br></br>
-        <TextField
-          className="input-author"
-          name="author"
-          value={author}
-          style={{ fontSize: "40px" }}
-          id="standard-basic"
-          label="Author Name"
-          InputProps={{
-            classes: {
-              input: classes.author
-            }
-          }}
-          onChange={handleAuthorChange}
-        />{" "}
-        <br />
-        <TextField
-          className="input-author"
-          name="imgUrl"
-          value={imgUrl}
-          style={{ fontSize: "40px" }}
-          id="standard-basic"
-          label="Imgae URL"
-          InputProps={{
-            classes: {
-              input: classes.author
-            }
-          }}
-          onChange={handleImgUrlChange}
-        />{" "}
-        <br />
-        <TextField
-          id="outlined-textarea"
-          label="Story"
-          name="content"
-          value={content}
-          placeholder="Your Story"
-          multiline
-          variant="outlined"
-          InputProps={{
-            classes: {
-              input: classes.content
-            }
-          }}
-          onChange={handleContentChange}
-        />
-        <br />
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          className={classes.button}
-          endIcon={<Icon>send</Icon>}
+        <ValidatorForm
+          className={classes.root}
+          noValidate
+          autoComplete="off"
+          onSubmit={handleEditSubmit}
         >
-          Send
-        </Button>
-      </form>
-    </div>
+          <TextValidator
+            required
+            validators={["required"]}
+            errorMessages={["title is required"]}
+            className="input"
+            name="title"
+            value={title}
+            style={{ fontSize: "40px" }}
+            id="standard-basic"
+            label="Title"
+            onChange={handleTitleChange}
+            inputProps={{
+              style: { fontSize: 30 }
+            }}
+          />
+          <br></br>
+          <TextValidator
+            required
+            validators={["required"]}
+            errorMessages={["Author name is required"]}
+            className="input post-title"
+            name="author"
+            value={author}
+            id="standard-basic"
+            label="Author Name"
+            inputProps={{
+              style: { fontSize: 20 }
+            }}
+            onChange={handleAuthorChange}
+          />{" "}
+          <br />
+          <TextValidator
+            required
+            validators={["required"]}
+            errorMessages={["Image URL is required"]}
+            className="input"
+            name="imgUrl"
+            value={imgUrl}
+            id="standard-basic"
+            label="Imgae URL"
+            onChange={handleImgUrlChange}
+            inputProps={{
+              style: { fontSize: 20 }
+            }}
+          />{" "}
+          <br />
+          <TextValidator
+            required
+            validators={["required"]}
+            errorMessages={["Content is required"]}
+            id="outlined-multiline-static"
+            className="input"
+            label="Story"
+            name="content"
+            value={content}
+            placeholder="Your Story"
+            multiline
+            variant="outlined"
+            onChange={handleContentChange}
+            rows="20"
+            inputProps={{
+              style: { fontSize: 20 }
+            }}
+          />
+          <br />
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            className={classes.button}
+            endIcon={<Icon>send</Icon>}
+          >
+            Send
+          </Button>
+        </ValidatorForm>
+      </div>
+      <Footer />
+    </>
   );
 };
 
