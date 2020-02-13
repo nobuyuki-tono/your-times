@@ -87,7 +87,7 @@ const EditPost = ({ post, history, match }) => {
       setAuthor("");
       setImgUrl("");
       setContent("");
-      history.push(`/post/${match.params.id}`);
+      history.push(`/post-read/${match.params.id}`);
     }
   };
 
