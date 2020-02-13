@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import { api } from "../api";
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -52,7 +53,8 @@ const EditPost = ({ post, history, match }) => {
 
   useEffect(() => {
     async function getSinglePost() {
-      const post = await api.get(`post/` + match.params.id);
+      // const post = await api.get(`post/` + match.params.id);
+      const post = await axios.get(`/post/` + match.params.id);
       console.log(post.data["post"]);
       setTitle(post.data["post"].title);
       setAuthor(post.data["post"].author);
@@ -68,7 +70,13 @@ const EditPost = ({ post, history, match }) => {
     if (title === "" || author === "" || imgUrl === "" || content === "") {
       alert("Plese fill in all form");
     } else {
-      const editedPost = await api.post(`/post/edit/${match.params.id}`, {
+      // const editedPost = await api.post(`/post/edit/${match.params.id}`, {
+      //   title,
+      //   author,
+      //   imgUrl,
+      //   content
+      // });
+      const editedPost = await axios.post(`/post/edit/${match.params.id}`, {
         title,
         author,
         imgUrl,

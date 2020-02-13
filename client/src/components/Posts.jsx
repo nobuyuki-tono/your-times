@@ -5,6 +5,7 @@ import { Card } from "react-bootstrap";
 
 import "../style/Posts.scss";
 
+import axios from "axios";
 import { api } from "../api";
 
 const Posts = () => {
@@ -12,7 +13,8 @@ const Posts = () => {
 
   useEffect(() => {
     async function getPosts() {
-      const posts = await api.get("/posts");
+      // const posts = await api.get("/posts");
+      const posts = await axios.get("/posts");
       console.log(posts.data["articles"]);
       setPosts(posts.data["articles"]);
     }

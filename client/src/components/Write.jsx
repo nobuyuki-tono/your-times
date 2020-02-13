@@ -10,6 +10,7 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import { api } from "../api";
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +40,13 @@ const Write = () => {
     if (title === "" || author === "" || imgUrl === "" || content === "") {
       // alert("Plese fill in all form");
     } else {
-      const post = await api.post("/posts", {
+      // const post = await api.post("/posts", {
+      //   title,
+      //   author,
+      //   imgUrl,
+      //   content
+      // });
+      const post = await axios.post("/posts", {
         title,
         author,
         imgUrl,
