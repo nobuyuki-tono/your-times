@@ -13,8 +13,8 @@ const Posts = () => {
 
   useEffect(() => {
     async function getPosts() {
-      const posts = await api.get("/posts");
-      // const posts = await axios.get("/posts");
+      // const posts = await api.get("/posts");
+      const posts = await axios.get("/posts");
       console.log(posts.data["articles"]);
       setPosts(posts.data["articles"]);
     }
