@@ -9,10 +9,6 @@ const { deletePost } = require("../controller/post");
 
 // Route for get all blog posts
 
-router.get("/", (req, res) => {
-  res.send("Hello");
-});
-
 router.get("/posts", getAllPosts);
 
 // Route for get a single post
