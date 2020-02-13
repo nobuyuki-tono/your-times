@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let accessPoint = "http://localhost:5000";
+let accessPoint = process.env;
 
 export const api = axios.create({
   baseURL: accessPoint
