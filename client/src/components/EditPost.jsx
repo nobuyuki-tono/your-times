@@ -53,8 +53,8 @@ const EditPost = ({ post, history, match }) => {
 
   useEffect(() => {
     async function getSinglePost() {
-      const post = await api.get(`post/` + match.params.id);
-      // const post = await axios.get(`/post/` + match.params.id);
+      // const post = await api.get(`post/` + match.params.id);
+      const post = await axios.get(`/post/` + match.params.id);
       console.log(post.data["post"]);
       setTitle(post.data["post"].title);
       setAuthor(post.data["post"].author);
