@@ -4,15 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Card } from "react-bootstrap";
 
 import "../style/Posts.scss";
-import axios from "axios";
-// import { api } from "../api";
+
+import { api } from "../api";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     async function getPosts() {
-      const posts = await axios.get("/posts");
+      const posts = await api.get("/posts");
       console.log(posts.data["articles"]);
       setPosts(posts.data["articles"]);
     }
