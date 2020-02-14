@@ -15,7 +15,7 @@ const Home = () => {
         <Navbar />
         <h1 className="home-heading">You Times</h1>
         <h4 className="home-subHeading">Write what you want to</h4>
-        <h4 className="home-subHeading">Let the world know your stroy!!</h4>
+        <h4 className="home-subHeading">Let the world know your story!!</h4>
         <Link to="/write" className="home-btn">
           Write your story
         </Link>
