@@ -68,7 +68,7 @@ const EditPost = ({ post, history, match }) => {
   const handleEditSubmit = async e => {
     e.preventDefault();
     if (title === "" || author === "" || imgUrl === "" || content === "") {
-      alert("Plese fill in all form");
+      // alert("Plese fill in all form");
     } else {
       const editedPost = await api.post(`/post/edit/${match.params.id}`, {
         title,
@@ -87,7 +87,7 @@ const EditPost = ({ post, history, match }) => {
       setAuthor("");
       setImgUrl("");
       setContent("");
-      history.push(`/post/${match.params.id}`);
+      history.push(`/post-read/${match.params.id}`);
     }
   };
 
